@@ -1,4 +1,7 @@
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 
@@ -22,5 +25,13 @@ public class AppointmentModel extends AbstractListModel<Appointment>{
     public void add(Appointment a) {
         appointments.add(a);
         fireIntervalAdded(this, appointments.size()-1, appointments.size()-1);
+    }
+    
+    public void saveAppointments(File f) throws Exception{
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
+        for (Appointment appointment : appointments) {
+            oos.writeObject(appointment);
+        }
+        oos.close();
     }
 }

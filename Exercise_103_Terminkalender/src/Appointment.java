@@ -1,11 +1,12 @@
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  *
  * @author Matthias
  */
-public class Appointment {
+public class Appointment implements Serializable{
     
     private LocalDateTime date;
     private String text;
