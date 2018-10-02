@@ -6,7 +6,7 @@ import javax.swing.AbstractListModel;
  *
  * @author Matthias
  */
-public class AppointmentModel extends AbstractListModel<Appointment>{
+public class AppointmentModel extends AbstractListModel{
     private ArrayList<Appointment> appointments = new ArrayList<>();
 
     @Override
@@ -15,7 +15,7 @@ public class AppointmentModel extends AbstractListModel<Appointment>{
     }
 
     @Override
-    public Appointment getElementAt(int index) {
+    public Object getElementAt(int index) {
         return appointments.get(index);
     }
     

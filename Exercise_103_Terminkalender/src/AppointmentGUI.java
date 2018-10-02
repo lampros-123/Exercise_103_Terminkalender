@@ -1,15 +1,17 @@
 
+import java.time.LocalDateTime;
+
+
 /**
  *
  * @author Matthias
  */
 public class AppointmentGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AppointmentGUI
-     */
+    AppointmentModel model = new AppointmentModel();
     public AppointmentGUI() {
         initComponents();
+        liTermine.setModel(model);
     }
 
     /**
@@ -33,6 +35,11 @@ public class AppointmentGUI extends javax.swing.JFrame {
         menuTermin.setText("Termin");
 
         miAdd.setText("hinzufügen");
+        miAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAddActionPerformed(evt);
+            }
+        });
         menuTermin.add(miAdd);
 
         miDelete.setText("löschen");
@@ -47,11 +54,6 @@ public class AppointmentGUI extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Termine"));
 
-        liTermine.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         liTermine.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(liTermine);
 
@@ -85,6 +87,10 @@ public class AppointmentGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void miAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddActionPerformed
+        model.add(new Appointment(LocalDateTime.now(), "Test Event"));
+    }//GEN-LAST:event_miAddActionPerformed
 
     /**
      * @param args the command line arguments
