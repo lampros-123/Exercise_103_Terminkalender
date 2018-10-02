@@ -1,5 +1,6 @@
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -30,4 +31,10 @@ public class Appointment {
     public void setText(String text) {
         this.text = text;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s --> %s", date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy - HH.mm")), text);
+    }
+    
 }
