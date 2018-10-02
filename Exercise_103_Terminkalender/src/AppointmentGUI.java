@@ -21,9 +21,27 @@ public class AppointmentGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        menuTermin = new javax.swing.JMenu();
+        miAdd = new javax.swing.JMenuItem();
+        miDelete = new javax.swing.JMenuItem();
+        miEdit = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         liTermine = new javax.swing.JList<>();
+
+        menuTermin.setText("Termin");
+
+        miAdd.setText("hinzufügen");
+        menuTermin.add(miAdd);
+
+        miDelete.setText("löschen");
+        menuTermin.add(miDelete);
+
+        miEdit.setText("ändern");
+        menuTermin.add(miEdit);
+
+        jPopupMenu1.add(menuTermin);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -34,6 +52,7 @@ public class AppointmentGUI extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        liTermine.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(liTermine);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -104,7 +123,12 @@ public class AppointmentGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> liTermine;
+    private javax.swing.JMenu menuTermin;
+    private javax.swing.JMenuItem miAdd;
+    private javax.swing.JMenuItem miDelete;
+    private javax.swing.JMenuItem miEdit;
     // End of variables declaration//GEN-END:variables
 }
