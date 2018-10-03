@@ -50,6 +50,11 @@ public class AppointmentGUI extends javax.swing.JFrame {
         menuTermin.add(miAdd);
 
         miDelete.setText("löschen");
+        miDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miDeleteActionPerformed(evt);
+            }
+        });
         menuTermin.add(miDelete);
 
         miEdit.setText("ändern");
@@ -113,8 +118,17 @@ public class AppointmentGUI extends javax.swing.JFrame {
         try{    
             model.saveAppointments(new File("./appointments.bin"));            
         } catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "failed to save Appointments");
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void miDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miDeleteActionPerformed
+        if(liTermine.getSelectedIndex() < 0) {
+            JOptionPane.showMessageDialog(this, "select an item to remove");
+            return;
+        }
+        model.remove(liTermine.getSelectedIndex());
+    }//GEN-LAST:event_miDeleteActionPerformed
 
     /**
      * @param args the command line arguments
