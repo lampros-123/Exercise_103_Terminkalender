@@ -17,6 +17,17 @@ public class AppointmentDlg extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+    public AppointmentDlg(java.awt.Frame parent, boolean modal, Appointment prefill) {
+        super(parent, modal);
+        initComponents();
+        
+        tfDay.setText(prefill.getDate().getDayOfMonth()+"");
+        tfMonth.setText(prefill.getDate().getMonthValue()+"");
+        tfYear.setText(prefill.getDate().getYear()+"");
+        tfMinute.setText(prefill.getDate().getMinute()+"");
+        tfHour.setText(prefill.getDate().getHour()+"");
+        tfText.setText(prefill.getText());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

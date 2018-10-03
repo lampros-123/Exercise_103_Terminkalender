@@ -142,7 +142,7 @@ public class AppointmentGUI extends javax.swing.JFrame {
             return;
         }
         
-        AppointmentDlg dlg = new AppointmentDlg(this, true);
+        AppointmentDlg dlg = new AppointmentDlg(this, true, (Appointment) model.getElementAt(idx));
         dlg.setVisible(true);
         
         if(dlg.getAppointment() != null) {
