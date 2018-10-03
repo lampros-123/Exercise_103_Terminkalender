@@ -1,5 +1,7 @@
 
+import java.io.File;
 import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -11,6 +13,11 @@ public class AppointmentGUI extends javax.swing.JFrame {
     AppointmentModel model = new AppointmentModel();
     public AppointmentGUI() {
         initComponents();
+        try {
+            model.loadAppointements(new File("./appointments.bin"));
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "unable to load items");
+        }
         liTermine.setModel(model);
     }
 
@@ -51,6 +58,11 @@ public class AppointmentGUI extends javax.swing.JFrame {
         jPopupMenu1.add(menuTermin);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Termine"));
 
@@ -91,6 +103,13 @@ public class AppointmentGUI extends javax.swing.JFrame {
     private void miAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddActionPerformed
         model.add(new Appointment(LocalDateTime.now(), "Test Event"));
     }//GEN-LAST:event_miAddActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try{    
+            model.saveAppointments(new File("./appointments.bin"));            
+        } catch(Exception e) {
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
