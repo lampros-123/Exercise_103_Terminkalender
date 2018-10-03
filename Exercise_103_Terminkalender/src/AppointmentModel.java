@@ -35,6 +35,12 @@ public class AppointmentModel extends AbstractListModel{
         fireIntervalRemoved(this, index, index);
     }
     
+    public void update(int index, Appointment updated) {
+        appointments.remove(index);
+        appointments.add(index, updated);
+        fireContentsChanged(this, index, index);
+    }
+    
     public void saveAppointments(File f) throws Exception{
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
         for (Appointment appointment : appointments) {

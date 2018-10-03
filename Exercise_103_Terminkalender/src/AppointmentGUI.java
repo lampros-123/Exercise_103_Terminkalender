@@ -58,6 +58,11 @@ public class AppointmentGUI extends javax.swing.JFrame {
         menuTermin.add(miDelete);
 
         miEdit.setText("ändern");
+        miEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miEditActionPerformed(evt);
+            }
+        });
         menuTermin.add(miEdit);
 
         jPopupMenu1.add(menuTermin);
@@ -129,6 +134,21 @@ public class AppointmentGUI extends javax.swing.JFrame {
         }
         model.remove(liTermine.getSelectedIndex());
     }//GEN-LAST:event_miDeleteActionPerformed
+
+    private void miEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditActionPerformed
+        int idx = liTermine.getSelectedIndex();
+        if(idx < 0) {
+            JOptionPane.showMessageDialog(this, "select an item to edit");
+            return;
+        }
+        
+        AppointmentDlg dlg = new AppointmentDlg(this, true);
+        dlg.setVisible(true);
+        
+        if(dlg.getAppointment() != null) {
+            model.update(idx, dlg.getAppointment());
+        }
+    }//GEN-LAST:event_miEditActionPerformed
 
     /**
      * @param args the command line arguments
