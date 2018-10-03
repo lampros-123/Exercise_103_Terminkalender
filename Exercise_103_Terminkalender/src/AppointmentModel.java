@@ -25,9 +25,15 @@ public class AppointmentModel extends AbstractListModel{
         return appointments.get(index);
     }
     
-    public void add(Appointment a) {
-        appointments.add(a);
-        fireIntervalAdded(this, appointments.size()-1, appointments.size()-1);
+    public int add(Appointment appointment) {
+        int idx;
+        for (idx = 0; idx < appointments.size(); idx++) {
+            if(appointments.get(idx).getDate().isAfter(appointment.getDate()))
+                break;
+        }
+        appointments.add(idx, appointment);
+        fireIntervalAdded(this, idx, idx);
+        return idx;
     }
     
     public void remove(int index) {
@@ -35,10 +41,10 @@ public class AppointmentModel extends AbstractListModel{
         fireIntervalRemoved(this, index, index);
     }
     
-    public void update(int index, Appointment updated) {
+    public int update(int index, Appointment updated) {
         appointments.remove(index);
-        appointments.add(index, updated);
-        fireContentsChanged(this, index, index);
+        fireIntervalRemoved(this, index, index);
+        return add(updated);
     }
     
     public void saveAppointments(File f) throws Exception{
@@ -54,7 +60,7 @@ public class AppointmentModel extends AbstractListModel{
         try {
             Object app;
             while((app = ois.readObject()) != null) {
-                appointments.add((Appointment) app);
+                add((Appointment) app);
             }
         } catch(EOFException e) { }
         ois.close();

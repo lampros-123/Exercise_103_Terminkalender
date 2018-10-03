@@ -1,6 +1,5 @@
 
 import java.io.File;
-import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 
 
@@ -11,10 +10,12 @@ import javax.swing.JOptionPane;
 public class AppointmentGUI extends javax.swing.JFrame {
 
     AppointmentModel model = new AppointmentModel();
+    File file = new File("./appointments.bin");
+    
     public AppointmentGUI() {
         initComponents();
         try {
-            model.loadAppointements(new File("./appointments.bin"));
+            model.loadAppointements(file);
         } catch(Exception e) {
             JOptionPane.showMessageDialog(this, "unable to load items");
         }
@@ -115,13 +116,13 @@ public class AppointmentGUI extends javax.swing.JFrame {
         dlg.setVisible(true);
         
         if(dlg.getAppointment() != null) {
-            model.add(dlg.getAppointment());
+            liTermine.setSelectedIndex(model.add(dlg.getAppointment()));
         }
     }//GEN-LAST:event_miAddActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         try{    
-            model.saveAppointments(new File("./appointments.bin"));            
+            model.saveAppointments(file);            
         } catch(Exception e) {
             JOptionPane.showMessageDialog(this, "failed to save Appointments");
         }
@@ -146,7 +147,7 @@ public class AppointmentGUI extends javax.swing.JFrame {
         dlg.setVisible(true);
         
         if(dlg.getAppointment() != null) {
-            model.update(idx, dlg.getAppointment());
+            liTermine.setSelectedIndex(model.update(idx, dlg.getAppointment()));
         }
     }//GEN-LAST:event_miEditActionPerformed
 
