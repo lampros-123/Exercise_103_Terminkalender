@@ -1,13 +1,18 @@
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author Matthias
  */
 public class AppoointmentDlg extends javax.swing.JDialog {
 
-    /**
-     * Creates new form AppoointmentDlg
-     */
+    Appointment appointment = null;
+    
     public AppoointmentDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -23,13 +28,13 @@ public class AppoointmentDlg extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        tfTag = new javax.swing.JTextField();
+        tfDay = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        tfMonat = new javax.swing.JTextField();
+        tfMonth = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        tfJahr = new javax.swing.JTextField();
+        tfYear = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        tfStunde = new javax.swing.JTextField();
+        tfHour = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         tfMinute = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -44,29 +49,29 @@ public class AppoointmentDlg extends javax.swing.JDialog {
         jLabel1.setText("Tag:");
         getContentPane().add(jLabel1);
 
-        tfTag.setText("8");
-        getContentPane().add(tfTag);
+        tfDay.setText("8");
+        getContentPane().add(tfDay);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel2.setText("Monat:");
         getContentPane().add(jLabel2);
 
-        tfMonat.setText("9");
-        getContentPane().add(tfMonat);
+        tfMonth.setText("9");
+        getContentPane().add(tfMonth);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel3.setText("Jahr:");
         getContentPane().add(jLabel3);
 
-        tfJahr.setText("2014");
-        getContentPane().add(tfJahr);
+        tfYear.setText("2014");
+        getContentPane().add(tfYear);
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel4.setText("Stunde:");
         getContentPane().add(jLabel4);
 
-        tfStunde.setText("8");
-        getContentPane().add(tfStunde);
+        tfHour.setText("8");
+        getContentPane().add(tfHour);
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel5.setText("Minute:");
@@ -83,13 +88,39 @@ public class AppoointmentDlg extends javax.swing.JDialog {
         getContentPane().add(tfText);
 
         btAdd.setText("übernehmen");
+        btAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddActionPerformed(evt);
+            }
+        });
         getContentPane().add(btAdd);
 
         btCancel.setText("abbrechen");
+        btCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelActionPerformed(evt);
+            }
+        });
         getContentPane().add(btCancel);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
+        appointment = null;
+        this.dispose();
+    }//GEN-LAST:event_btCancelActionPerformed
+
+    private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
+        try{
+            String dateText = String.format("%s.%s.%s %s:%s", tfDay.getText(), tfMonth.getText(), tfYear.getText(), tfHour.getText(), tfMinute.getText());
+            LocalDateTime dateTime = LocalDateTime.parse(dateText, DateTimeFormatter.ofPattern("d.M.yyyy H:m"));
+            appointment = new Appointment(dateTime, tfText.getText());
+            this.dispose();
+        } catch(DateTimeParseException e) {
+            JOptionPane.showMessageDialog(this, "The date or time you entered is invalid!");
+        }
+    }//GEN-LAST:event_btAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,11 +173,11 @@ public class AppoointmentDlg extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField tfJahr;
+    private javax.swing.JTextField tfDay;
+    private javax.swing.JTextField tfHour;
     private javax.swing.JTextField tfMinute;
-    private javax.swing.JTextField tfMonat;
-    private javax.swing.JTextField tfStunde;
-    private javax.swing.JTextField tfTag;
+    private javax.swing.JTextField tfMonth;
     private javax.swing.JTextField tfText;
+    private javax.swing.JTextField tfYear;
     // End of variables declaration//GEN-END:variables
 }

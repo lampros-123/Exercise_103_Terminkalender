@@ -31,7 +31,7 @@
         <Property name="text" type="java.lang.String" value="Tag:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfTag">
+    <Component class="javax.swing.JTextField" name="tfDay">
       <Properties>
         <Property name="text" type="java.lang.String" value="8"/>
       </Properties>
@@ -42,7 +42,7 @@
         <Property name="text" type="java.lang.String" value="Monat:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfMonat">
+    <Component class="javax.swing.JTextField" name="tfMonth">
       <Properties>
         <Property name="text" type="java.lang.String" value="9"/>
       </Properties>
@@ -53,7 +53,7 @@
         <Property name="text" type="java.lang.String" value="Jahr:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfJahr">
+    <Component class="javax.swing.JTextField" name="tfYear">
       <Properties>
         <Property name="text" type="java.lang.String" value="2014"/>
       </Properties>
@@ -64,7 +64,7 @@
         <Property name="text" type="java.lang.String" value="Stunde:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfStunde">
+    <Component class="javax.swing.JTextField" name="tfHour">
       <Properties>
         <Property name="text" type="java.lang.String" value="8"/>
       </Properties>
@@ -95,11 +95,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xfc;bernehmen"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAddActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btCancel">
       <Properties>
         <Property name="text" type="java.lang.String" value="abbrechen"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
