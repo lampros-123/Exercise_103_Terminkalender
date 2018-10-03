@@ -101,7 +101,12 @@ public class AppointmentGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void miAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddActionPerformed
-        model.add(new Appointment(LocalDateTime.now(), "Test Event"));
+        AppointmentDlg dlg = new AppointmentDlg(this, true);
+        dlg.setVisible(true);
+        
+        if(dlg.getAppointment() != null) {
+            model.add(dlg.getAppointment());
+        }
     }//GEN-LAST:event_miAddActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
