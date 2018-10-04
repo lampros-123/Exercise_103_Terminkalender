@@ -133,7 +133,7 @@ public class AppointmentGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "select an item to remove");
             return;
         }
-        model.remove(liTermine.getSelectedIndex());
+        model.remove(liTermine.getSelectedIndices());
     }//GEN-LAST:event_miDeleteActionPerformed
 
     private void miEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditActionPerformed

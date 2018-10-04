@@ -36,9 +36,12 @@ public class AppointmentModel extends AbstractListModel{
         return idx;
     }
     
-    public void remove(int index) {
-        appointments.remove(index);
-        fireIntervalRemoved(this, index, index);
+    public void remove(int[] indices) {
+        for (int i = 0; i < indices.length; i++) {
+            int idx = indices[i];
+            appointments.remove(idx - i);
+        }
+        fireIntervalRemoved(this, indices[0], indices[indices.length-1]);
     }
     
     public int update(int index, Appointment updated) {
